@@ -11,7 +11,8 @@ void search(map<string, tuple<int,string,string>> villagerColors, string searchK
 
 int main() {
     // declarations
-    int choice;
+    int choice = 0;
+    string name;
     map<string, tuple<int,string,string>> villagerColors;
 
     // insert elements into the map
@@ -20,15 +21,28 @@ int main() {
     villagerColors["Raymond"] = {3, "Water Species", "6-7"};
     villagerColors.insert({"Marshal", {7, "Mountain Species", "I love pizza!"}});
 
-    switch(choice){
-        
+    while(choice != 4){
+        cout << "1. Increase Friendship" << endl;
+        cout << "2. Decrease Friendship" << endl;
+        cout << "3. Search for Villager" << endl;
+        cout << "4. Exit" << endl;
+        cin >> choice;
+
+        switch(choice){
+            case 1:
+
+            case 2:
+
+            case 3:
+                cout << "Enter name of villager you want to search" << endl;
+                cin >> name;
+                search(villagerColors, name);
+
+            case 4:
+                cout << "Exiting Program" << endl;
+                break;
+        }
     }
-    //Code Driver
-    range_display(villagerColors);
-    iterator_display(villagerColors);
-    search(villagerColors, "Raymond");
-
-
 
     // report size, clear, report size again to confirm map operations
     cout << "\nSize before clear: " << villagerColors.size() << endl;
