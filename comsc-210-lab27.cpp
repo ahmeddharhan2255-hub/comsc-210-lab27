@@ -27,10 +27,9 @@ int main() {
     for (map<string, tuple<int,string,string>>::iterator it = villagerColors.begin(); 
                                                it != villagerColors.end(); ++it) {
         cout << it->first << ": ";
-        for (auto color : it->second) {
-            cout << color << " ";
-        }
-        cout << endl;
+        cout << get<0>(it->second) << " ";
+        cout << get<1>(it->second) << " ";
+        cout << get<2>(it->second) << " " <<endl;
     }
 
     // delete an element
@@ -42,8 +41,9 @@ int main() {
     if (it != villagerColors.end()) {  // the iterator points to beyond the end of the map
                                        // if searchKey is not found
         cout << "\nFound " << searchKey << "'s favorite colors: ";
-        for (auto color : it->second)  // range loop to traverse the value/vector
-            cout << color << " ";
+        cout << get<0>(it->second) << " ";
+        cout << get<1>(it->second) << " ";
+        cout << get<2>(it->second) << " " <<endl;
         cout << endl;
     } else
         cout << endl << searchKey << " not found." << endl;
