@@ -15,11 +15,11 @@ int main() {
 
     // access the map using a range-based for loop
     cout << "Villagers and their favorite colors (range-based for loop):" << endl;
-    for (auto tuple : villagerColors) {
-        cout << tuple.first << ": ";
-        for (auto color : tuple.second)
-            cout << color << " ";
-        cout << endl;
+    for (auto villager : villagerColors) {
+        cout << villager.first << endl;
+        cout << get<0>(villager.second) << endl;
+        cout << get<1>(villager.second) << endl;
+        cout << get<2>(villager.second) << endl;
     }
 
     // access the map using iterators
