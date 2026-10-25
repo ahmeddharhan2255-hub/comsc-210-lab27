@@ -8,6 +8,8 @@ using namespace std;
 void range_display(map<string, tuple<int,string,string>> villagerColors);
 void iterator_display(map<string, tuple<int,string,string>> villagerColors);
 void search(map<string, tuple<int,string,string>> villagerColors, string searchKey);
+void addFriendship(map<string, tuple<int,string,string>> &villagerColors);
+void deleteFriendship(map<string, tuple<int,string,string>> &villagerColors);
 
 int main() {
     // declarations
@@ -87,4 +89,12 @@ void search(map<string, tuple<int,string,string>> villagerColors, string searchK
         cout << endl;
     } else
         cout << endl << searchKey << " not found." << endl;    
+}
+
+void addFriendship(){
+    
+}
+
+void deleteFriendship(){
+
 }
