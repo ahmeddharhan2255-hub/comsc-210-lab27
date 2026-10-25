@@ -34,6 +34,8 @@ int main() {
         cout << "1. Increase Friendship" << endl;
         cout << "2. Decrease Friendship" << endl;
         cout << "3. Search for Villager" << endl;
+        cout << "" << endl;
+        cout << "" << endl;
         cout << "4. Exit" << endl;
         cout << "Enter choice here: ";
         cin >> choice;
@@ -65,18 +67,21 @@ int main() {
             case 4:
                 cout << "Exiting Program" << endl;
                 clear(villagerColors);
-                break;
+                 return 0;
             
             case 5:
                 cout << "Enter name of villager you want to delete" << endl;
                 cin >> name;
                 deleteVillager(villagerColors, name);
+                range_display(villagerColors);
+                break;
 
             case 6:
+                addVillager(villagerColors);
+                iterator_display(villagerColors);
+                break;
         }
     }
-
-    return 0;
 }
 
 void clear(map<string, tuple<int,string,string>> &villagerColors){
@@ -141,7 +146,7 @@ void deleteFriendship(map<string, tuple<int,string,string>> &villagerColors, str
     auto it = villagerColors.find(name);
 
     if(it != villagerColors.end()){
-        if(get<0>(it->second) <= 10 && get<0>(it->second) > 0){
+        if(get<0>(it->second) <= 10 || get<0>(it->second) > 0){
             get<0>(it->second) -= 1;
         }
         else{
@@ -152,9 +157,38 @@ void deleteFriendship(map<string, tuple<int,string,string>> &villagerColors, str
 }
 
 void addVillager(map<string, tuple<int,string,string>> &villagerColors){
+    string name;
+    int friendship;
+    string species;
+    string phrase;
 
+    cout << "Enter Name: ";
+    cin >> name;
+
+    cout << "Enter Friendship Level: ";
+    cin >> friendship;
+
+    while(friendship > 10 || friendship < 0){
+        cout << "Try Again. Must be between 0 and 10" << endl;
+        cin >> friendship;
+    }
+
+    cout << "Enter Catchphrase";
+    cin >> phrase;
+
+    cout << "Enter Species";
+    cin >> species;
+
+    villagerColors.insert({name,{friendship,species,phrase}});
 }
 
 void deleteVillager(map<string, tuple<int,string,string>> &villagerColors, string name){
+    auto it = villagerColors.find(name);
 
+    if(it != villagerColors.end()){
+        villagerColors.erase(name);
+    }
+    else{
+        cout << "Name couldn't be found. Cannot erase" << endl;
+    }
 }
