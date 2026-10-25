@@ -15,7 +15,7 @@ void addFriendship(map<string, tuple<int,string,string>> &villagerColors, string
 void deleteFriendship(map<string, tuple<int,string,string>> &villagerColors, string name);
 void clear(map<string, tuple<int,string,string>> &villagerColors);
 void addVillager(map<string, tuple<int,string,string>> &villagerColors);
-void deleteVillager(map<string, tuple<int,string,string>> &villagerColors);
+void deleteVillager(map<string, tuple<int,string,string>> &villagerColors, string name);
 
 int main() {
     // declarations
@@ -66,6 +66,13 @@ int main() {
                 cout << "Exiting Program" << endl;
                 clear(villagerColors);
                 break;
+            
+            case 5:
+                cout << "Enter name of villager you want to delete" << endl;
+                cin >> name;
+                deleteVillager(villagerColors, name);
+
+            case 6:
         }
     }
 
@@ -142,4 +149,12 @@ void deleteFriendship(map<string, tuple<int,string,string>> &villagerColors, str
         }
 
     }
+}
+
+void addVillager(map<string, tuple<int,string,string>> &villagerColors){
+
+}
+
+void deleteVillager(map<string, tuple<int,string,string>> &villagerColors, string name){
+
 }
