@@ -8,8 +8,8 @@ using namespace std;
 void range_display(map<string, tuple<int,string,string>> villagerColors);
 void iterator_display(map<string, tuple<int,string,string>> villagerColors);
 void search(map<string, tuple<int,string,string>> villagerColors, string searchKey);
-void addFriendship(map<string, tuple<int,string,string>> &villagerColors);
-void deleteFriendship(map<string, tuple<int,string,string>> &villagerColors);
+void addFriendship(map<string, tuple<int,string,string>> &villagerColors, string name);
+void deleteFriendship(map<string, tuple<int,string,string>> &villagerColors, string name);
 
 int main() {
     // declarations
@@ -32,6 +32,9 @@ int main() {
 
         switch(choice){
             case 1:
+                cout << "Enter name of villager to add friendship point" << endl;
+                cin >> name;
+                addFriendship(villagerColors, name);
 
             case 2:
 
@@ -91,10 +94,24 @@ void search(map<string, tuple<int,string,string>> villagerColors, string searchK
         cout << endl << searchKey << " not found." << endl;    
 }
 
-void addFriendship(){
-    
+void addFriendship(map<string, tuple<int,string,string>> &villagerColors, string name){
+    auto it = villagerColors.find(name);
+
+    if(it != villagerColors.end()){
+        if(get<0>(it->second) < 10 && get<0>(it->second) >= 0){
+            get<0>(it->second) += 1;
+        }
+
+    }
 }
 
-void deleteFriendship(){
+void deleteFriendship(map<string, tuple<int,string,string>> &villagerColors, string name){
+    auto it = villagerColors.find(name);
 
+    if(it != villagerColors.end()){
+        if(get<0>(it->second) <= 10 && get<0>(it->second) > 0){
+            get<0>(it->second) -= 1;
+        }
+
+    }
 }
