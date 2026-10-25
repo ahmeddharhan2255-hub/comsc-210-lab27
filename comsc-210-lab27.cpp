@@ -4,6 +4,7 @@
 #include <map>
 #include <vector>
 #include <tuple>
+#include <string>
 using namespace std;
 
 
@@ -148,7 +149,7 @@ void deleteFriendship(map<string, tuple<int,string,string>> &villagerColors, str
     auto it = villagerColors.find(name);
 
     if(it != villagerColors.end()){
-        if(get<0>(it->second) <= 10 || get<0>(it->second) > 0){
+        if(get<0>(it->second) <= 10 && get<0>(it->second) > 0){
             get<0>(it->second) -= 1;
         }
         else{
@@ -175,11 +176,13 @@ void addVillager(map<string, tuple<int,string,string>> &villagerColors){
         cin >> friendship;
     }
 
+    cin.ignore();
+
     cout << "Enter Catchphrase: ";
-    cin >> phrase;
+    getline(cin, phrase);
 
     cout << "Enter Species: ";
-    cin >> species;
+    getline(cin,species);
 
     villagerColors.insert({name,{friendship,species,phrase}});
 }
