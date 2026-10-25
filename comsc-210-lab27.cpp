@@ -6,12 +6,16 @@
 #include <tuple>
 using namespace std;
 
+
+//Function Prototypes
 void range_display(map<string, tuple<int,string,string>> &villagerColors);
 void iterator_display(map<string, tuple<int,string,string>> &villagerColors);
 void search(map<string, tuple<int,string,string>> &villagerColors, string searchKey);
 void addFriendship(map<string, tuple<int,string,string>> &villagerColors, string name);
 void deleteFriendship(map<string, tuple<int,string,string>> &villagerColors, string name);
 void clear(map<string, tuple<int,string,string>> &villagerColors);
+void addVillager(map<string, tuple<int,string,string>> &villagerColors);
+void deleteVillager(map<string, tuple<int,string,string>> &villagerColors);
 
 int main() {
     // declarations
@@ -25,6 +29,7 @@ int main() {
     villagerColors["Raymond"] = {3, "Water Species", "6-7"};
     villagerColors.insert({"Marshal", {7, "Mountain Species", "I love pizza!"}});
 
+    //Driver Code
     while(choice != 4){
         cout << "1. Increase Friendship" << endl;
         cout << "2. Decrease Friendship" << endl;
@@ -118,6 +123,9 @@ void addFriendship(map<string, tuple<int,string,string>> &villagerColors, string
         if(get<0>(it->second) < 10 && get<0>(it->second) >= 0){
             get<0>(it->second) += 1;
         }
+        else{
+            cout << "Max Friendship Reached" << endl;
+        }
 
     }
 }
@@ -128,6 +136,9 @@ void deleteFriendship(map<string, tuple<int,string,string>> &villagerColors, str
     if(it != villagerColors.end()){
         if(get<0>(it->second) <= 10 && get<0>(it->second) > 0){
             get<0>(it->second) -= 1;
+        }
+        else{
+            cout << "Lowest Friendship Reached" << endl;
         }
 
     }
