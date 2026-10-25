@@ -3,13 +3,15 @@
 #include <iostream>
 #include <map>
 #include <vector>
+#include <tuple>
 using namespace std;
 
-void range_display(map<string, tuple<int,string,string>> villagerColors);
-void iterator_display(map<string, tuple<int,string,string>> villagerColors);
-void search(map<string, tuple<int,string,string>> villagerColors, string searchKey);
+void range_display(map<string, tuple<int,string,string>> &villagerColors);
+void iterator_display(map<string, tuple<int,string,string>> &villagerColors);
+void search(map<string, tuple<int,string,string>> &villagerColors, string searchKey);
 void addFriendship(map<string, tuple<int,string,string>> &villagerColors, string name);
 void deleteFriendship(map<string, tuple<int,string,string>> &villagerColors, string name);
+void clear(map<string, tuple<int,string,string>> &villagerColors);
 
 int main() {
     // declarations
@@ -28,36 +30,51 @@ int main() {
         cout << "2. Decrease Friendship" << endl;
         cout << "3. Search for Villager" << endl;
         cout << "4. Exit" << endl;
+        cout << "Enter choice here: ";
         cin >> choice;
+        cout << endl;
+        iterator_display(villagerColors);
 
         switch(choice){
             case 1:
-                cout << "Enter name of villager to add friendship point" << endl;
+                cout << "Enter name of villager to increase their friendship point" << endl;
                 cin >> name;
                 addFriendship(villagerColors, name);
+                range_display(villagerColors);
+                break;
 
             case 2:
+                cout << "Enter name of villager to decrease their friendship point" << endl;
+                cin >> name;
+                deleteFriendship(villagerColors, name);
+                range_display(villagerColors);
+                break;
 
             case 3:
                 cout << "Enter name of villager you want to search" << endl;
                 cin >> name;
                 search(villagerColors, name);
+                range_display(villagerColors);
+                break;
 
             case 4:
                 cout << "Exiting Program" << endl;
+                clear(villagerColors);
                 break;
         }
     }
 
-    // report size, clear, report size again to confirm map operations
-    cout << "\nSize before clear: " << villagerColors.size() << endl;
-    villagerColors.clear();
-    cout << "Size after clear: " << villagerColors.size() << endl;
-
     return 0;
 }
 
-void range_display(map<string, tuple<int,string,string>> villagerColors){
+void clear(map<string, tuple<int,string,string>> &villagerColors){
+    // report size, clear, report size again to confirm map operations
+    cout << "\nSize before clear: " << villagerColors.size() << endl;
+    villagerColors.clear();
+    cout << "Size after clear: " << villagerColors.size() << endl; 
+}
+
+void range_display(map<string, tuple<int,string,string>> &villagerColors){
     // access the map using a range-based for loop
     cout << "Villagers and their favorite colors (range-based for loop):" << endl;
     for (auto villager : villagerColors) {
@@ -68,7 +85,7 @@ void range_display(map<string, tuple<int,string,string>> villagerColors){
     }
 }
 
-void iterator_display(map<string, tuple<int,string,string>> villagerColors){
+void iterator_display(map<string, tuple<int,string,string>> &villagerColors){
     // access the map using iterators
     cout << "\nVillagers and their favorite colors (iterators):" << endl;
     for (map<string, tuple<int,string,string>>::iterator it = villagerColors.begin(); 
@@ -80,7 +97,7 @@ void iterator_display(map<string, tuple<int,string,string>> villagerColors){
     }
 }
 
-void search(map<string, tuple<int,string,string>> villagerColors, string searchKey){
+void search(map<string, tuple<int,string,string>> &villagerColors, string searchKey){
     // search for an element using .find() to avoid errors
     auto it = villagerColors.find(searchKey);
     if (it != villagerColors.end()) {  // the iterator points to beyond the end of the map
