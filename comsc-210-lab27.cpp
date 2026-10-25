@@ -11,6 +11,7 @@ void search(map<string, tuple<int,string,string>> villagerColors, string searchK
 
 int main() {
     // declarations
+    int choice;
     map<string, tuple<int,string,string>> villagerColors;
 
     // insert elements into the map
@@ -19,6 +20,9 @@ int main() {
     villagerColors["Raymond"] = {3, "Water Species", "6-7"};
     villagerColors.insert({"Marshal", {7, "Mountain Species", "I love pizza!"}});
 
+    switch(choice){
+        
+    }
     //Code Driver
     range_display(villagerColors);
     iterator_display(villagerColors);
