@@ -30,56 +30,56 @@ int main() {
     villagerColors.insert({"Marshal", {7, "Mountain Species", "I love pizza!"}});
 
     //Driver Code
-    while(choice != 4){
-        cout << "1. Increase Friendship" << endl;
-        cout << "2. Decrease Friendship" << endl;
-        cout << "3. Search for Villager" << endl;
-        cout << "" << endl;
-        cout << "" << endl;
-        cout << "4. Exit" << endl;
+    while(choice != 6){
+        cout << "1. Add Villager" << endl;
+        cout << "2. Delete Villager" << endl;
+        cout << "3. Increase Friendship" << endl;
+        cout << "4. Decrease Friendship" << endl;
+        cout << "5. Search For Villager" << endl;
+        cout << "6. Exit" << endl;
         cout << "Enter choice here: ";
         cin >> choice;
         cout << endl;
         iterator_display(villagerColors);
+        cout << endl;
 
         switch(choice){
             case 1:
+                addVillager(villagerColors);
+                iterator_display(villagerColors);
+                break;
+            case 2:
+                cout << "Enter name of villager you want to delete" << endl;
+                cin >> name;
+                deleteVillager(villagerColors, name);
+                range_display(villagerColors);
+                break;
+        
+            case 3:
                 cout << "Enter name of villager to increase their friendship point" << endl;
                 cin >> name;
                 addFriendship(villagerColors, name);
                 range_display(villagerColors);
                 break;
 
-            case 2:
+            case 4:
                 cout << "Enter name of villager to decrease their friendship point" << endl;
                 cin >> name;
                 deleteFriendship(villagerColors, name);
                 range_display(villagerColors);
                 break;
 
-            case 3:
+            case 5:
                 cout << "Enter name of villager you want to search" << endl;
                 cin >> name;
                 search(villagerColors, name);
                 range_display(villagerColors);
                 break;
 
-            case 4:
+            case 6:
                 cout << "Exiting Program" << endl;
                 clear(villagerColors);
-                 return 0;
-            
-            case 5:
-                cout << "Enter name of villager you want to delete" << endl;
-                cin >> name;
-                deleteVillager(villagerColors, name);
-                range_display(villagerColors);
-                break;
-
-            case 6:
-                addVillager(villagerColors);
-                iterator_display(villagerColors);
-                break;
+                return 0;
         }
     }
 }
@@ -93,18 +93,19 @@ void clear(map<string, tuple<int,string,string>> &villagerColors){
 
 void range_display(map<string, tuple<int,string,string>> &villagerColors){
     // access the map using a range-based for loop
-    cout << "Villagers and their favorite colors (range-based for loop):" << endl;
+    cout << "Villagers and their favorite traits (range-based for loop):" << endl;
     for (auto villager : villagerColors) {
         cout << villager.first << ": ";
         cout << get<0>(villager.second) << ", ";
         cout << get<1>(villager.second) << ", ";
         cout << get<2>(villager.second) << " " << endl;
     }
+    cout << endl;
 }
 
 void iterator_display(map<string, tuple<int,string,string>> &villagerColors){
     // access the map using iterators
-    cout << "\nVillagers and their favorite colors (iterators):" << endl;
+    cout << "\nVillagers and their favorite traits (iterators):" << endl;
     for (map<string, tuple<int,string,string>>::iterator it = villagerColors.begin(); 
                                                it != villagerColors.end(); ++it) {
         cout << it->first << ": ";
@@ -112,6 +113,7 @@ void iterator_display(map<string, tuple<int,string,string>> &villagerColors){
         cout << get<1>(it->second) << ", ";
         cout << get<2>(it->second) << " " << endl;
     }
+    cout << endl;
 }
 
 void search(map<string, tuple<int,string,string>> &villagerColors, string searchKey){
@@ -169,14 +171,14 @@ void addVillager(map<string, tuple<int,string,string>> &villagerColors){
     cin >> friendship;
 
     while(friendship > 10 || friendship < 0){
-        cout << "Try Again. Must be between 0 and 10" << endl;
+        cout << "Try Again. Must be between 0 and 10: ";
         cin >> friendship;
     }
 
-    cout << "Enter Catchphrase";
+    cout << "Enter Catchphrase: ";
     cin >> phrase;
 
-    cout << "Enter Species";
+    cout << "Enter Species: ";
     cin >> species;
 
     villagerColors.insert({name,{friendship,species,phrase}});
