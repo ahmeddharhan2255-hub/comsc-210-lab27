@@ -185,6 +185,7 @@ void addVillager(map<string, tuple<int,string,string>> &villagerColors){
     getline(cin,species);
 
     villagerColors.insert({name,{friendship,species,phrase}});
+    cout << name << " added." << endl;
 }
 
 void deleteVillager(map<string, tuple<int,string,string>> &villagerColors, string name){
@@ -192,6 +193,7 @@ void deleteVillager(map<string, tuple<int,string,string>> &villagerColors, strin
 
     if(it != villagerColors.end()){
         villagerColors.erase(name);
+        cout << name << " deleted." << endl;
     }
     else{
         cout << "Name couldn't be found. Cannot erase" << endl;
