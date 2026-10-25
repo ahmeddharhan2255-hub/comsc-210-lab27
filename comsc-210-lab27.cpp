@@ -7,7 +7,7 @@ using namespace std;
 
 void range_display(map<string, tuple<int,string,string>> villagerColors);
 void iterator_display(map<string, tuple<int,string,string>> villagerColors);
-void search(map<string, tuple<int,string,string>> villagerColors);
+void search(map<string, tuple<int,string,string>> villagerColors, string searchKey);
 
 int main() {
     // declarations
